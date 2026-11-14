@@ -14,11 +14,11 @@ jobs:
 
       - name: Build with PS2DEV container
         run: |
-          docker pull ghcr.io/ps2dev/ps2dev:latest
+          docker pull ps2dev/ps2dev:latest
           docker run --rm \
             -v "${{ github.workspace }}:/src" \
             -w /src \
-            ghcr.io/ps2dev/ps2dev:latest \
+            ps2dev/ps2dev:latest \
             sh -lc 'make clean && make'
 
       - name: Verify ELF exists
