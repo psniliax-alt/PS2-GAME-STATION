@@ -48,6 +48,10 @@ static void launch_opl(void)
         return;
     }
 
+    /* Release LOADFILE/SIF RPC services before handing control to OPL.
+       This is required by the standard PS2 ELF-loader handoff sequence. */
+    SifLoadFileExit();
+    SifExitRpc();
     FlushCache(0);
     FlushCache(2);
     ExecPS2((void *)elf.epc, (void *)elf.gp, 0, NULL);
