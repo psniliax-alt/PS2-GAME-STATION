@@ -19,7 +19,7 @@ jobs:
             -v "${{ github.workspace }}:/src" \
             -w /src \
             ps2dev/ps2dev:latest \
-            sh -lc 'make clean && make'
+            sh -lc 'apk add --no-cache make && make clean && make'
 
       - name: Verify ELF exists
         run: |
