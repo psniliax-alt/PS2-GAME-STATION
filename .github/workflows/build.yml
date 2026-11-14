@@ -19,7 +19,7 @@ jobs:
             -v "${{ github.workspace }}:/src" \
             -w /src \
             ps2dev/ps2dev:latest \
-            sh -lc 'apk add --no-cache make && make clean && make'
+            sh -lc 'export PS2DEV=/usr/local/ps2dev; export PS2SDK=$PS2DEV/ps2sdk; export GSKIT=$PS2DEV/gsKit; export PATH=$PATH:$PS2DEV/bin:$PS2DEV/ee/bin:$PS2DEV/iop/bin:$PS2DEV/dvp/bin:$PS2SDK/bin; apk add --no-cache make; command -v mips64r5900el-ps2-elf-gcc; make clean && make'
 
       - name: Verify ELF exists
         run: |
