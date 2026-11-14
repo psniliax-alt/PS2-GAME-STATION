@@ -50,7 +50,7 @@ static void launch_opl(void)
 
     FlushCache(0);
     FlushCache(2);
-    ExecPS2((void *)elf.epc, (void *)elf.gp, 0, NULL, NULL);
+    ExecPS2((void *)elf.epc, (void *)elf.gp, 0, NULL);
 }
 
 int main(int argc, char *argv[])
