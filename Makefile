@@ -1,6 +1,6 @@
 EE_BIN = build/PS2_GAME_STATION.ELF
 EE_OBJS = build/main.o
-EE_LIBS = -ldebug -lpad -lloadfile -lsifrpc -lkernel
+EE_LIBS = -ldebug -lpad -lkernel
 EE_INCS += -I$(PS2SDK)/ee/include -I$(PS2SDK)/common/include
 EE_CFLAGS += -O2 -G0 -Wall
 
