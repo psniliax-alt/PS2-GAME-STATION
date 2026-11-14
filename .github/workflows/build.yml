@@ -1,0 +1,34 @@
+name: Build PS2 GAME STATION ELF
+
+on:
+  push:
+    branches: [ "main" ]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Build with PS2DEV container
+        run: |
+          docker pull ghcr.io/ps2dev/ps2dev:latest
+          docker run --rm \
+            -v "${{ github.workspace }}:/src" \
+            -w /src \
+            ghcr.io/ps2dev/ps2dev:latest \
+            sh -lc 'make clean && make'
+
+      - name: Verify ELF exists
+        run: |
+          test -s build/PS2_GAME_STATION.ELF
+          file build/PS2_GAME_STATION.ELF
+
+      - name: Upload ELF artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: PS2-GAME-STATION-ELF
+          path: build/PS2_GAME_STATION.ELF
+          if-no-files-found: error
