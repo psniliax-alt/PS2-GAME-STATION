@@ -22,7 +22,7 @@ static int cross_pressed(void)
 {
     struct padButtonStatus buttons;
     if (padGetState(0, 0) != PAD_STATE_STABLE) return 0;
-    if (padRead(0, 0, &buttons) != 0) return 0;
+    if (padRead(0, 0, &buttons) == 0) return 0;
     return (buttons.btns & PAD_CROSS) == 0;
 }
 
